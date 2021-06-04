@@ -2,6 +2,21 @@
   "name": "@raid-toolkit/app-shared",
   "entries": [
     {
+      "date": "Fri, 04 Jun 2021 20:11:23 GMT",
+      "tag": "@raid-toolkit/app-shared_v0.1.3",
+      "version": "0.1.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "update oauth documentation",
+            "author": "dnchattan@gmail.com",
+            "commit": "1dd538c221ffa9da9f28dd73a4ea36c7ee4cc05d",
+            "package": "@raid-toolkit/app-shared"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 04 Jun 2021 19:37:26 GMT",
       "tag": "@raid-toolkit/app-shared_v0.1.2",
       "version": "0.1.2",
