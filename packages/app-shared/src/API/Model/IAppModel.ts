@@ -55,6 +55,9 @@ export class IAppModel {
   denyAccess(appId: string): Promise<void> {
     methodStub(this, appId);
   }
+  revokeAccess(appId: string): Promise<void> {
+    methodStub(this, appId);
+  }
   on(event: 'request-access', callback: (request: OAuthAuthorizationRequest) => void): this {
     methodStub(this, event, callback);
   }
