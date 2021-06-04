@@ -1,0 +1,20 @@
+{
+  "name": "@raid-toolkit/app-shared",
+  "entries": [
+    {
+      "date": "Fri, 04 Jun 2021 19:17:21 GMT",
+      "tag": "@raid-toolkit/app-shared_v0.1.1",
+      "version": "0.1.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "add getApplicationGrants to IAppModel",
+            "author": "dnchattan@gmail.com",
+            "commit": "f50dd5650f04c2c80d3fc6df25089674eac36973",
+            "package": "@raid-toolkit/app-shared"
+          }
+        ]
+      }
+    }
+  ]
+}
