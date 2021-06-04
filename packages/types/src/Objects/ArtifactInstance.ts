@@ -1,4 +1,4 @@
-import { ArtifactKind, Faction, Rarity, StatBonus, StatKindId } from '../Enums';
+import { ArtifactKind, Faction, Rarity, StatBonus } from '../Enums';
 
 export interface ArtifactStatBonus extends StatBonus {
   glyphPower: number;
