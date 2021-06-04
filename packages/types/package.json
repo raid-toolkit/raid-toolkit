@@ -2,10 +2,10 @@
   "name": "@raid-toolkit/types",
   "productName": "@raid-toolkit/types",
   "version": "0.1.0",
-  "description": "Raid model types",
+  "description": "Raid-toolkit core types",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "private": true,
+  "private": false,
   "keywords": [],
   "author": {
     "name": "Daniel Chattan",
