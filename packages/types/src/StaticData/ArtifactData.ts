@@ -1,5 +1,5 @@
-import { StatBonus, StatKindId } from '../Enums';
-import { LocalizedText } from './LocalizedText';
+import type { StatBonus } from '../Enums';
+import type { LocalizedText } from './LocalizedText';
 
 export interface StaticArtifactSetSkillBonus {
   skillTypeId: number;

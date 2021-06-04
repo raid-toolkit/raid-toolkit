@@ -219,6 +219,7 @@ export const MultiplierList: Multiplier[] = [
 
 export const Multipliers: number[][] = MultiplierList.reduce(
   (summary, value) => {
+    // eslint-disable-next-line no-param-reassign
     summary[value.rank][value.level] = value.multiplier;
     return summary;
   },

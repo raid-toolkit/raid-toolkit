@@ -1,14 +1,14 @@
-import { ApiDefinition } from '@remote-ioc/runtime';
+import { ApiDefinition, methodStub } from '@remote-ioc/runtime';
 
 @ApiDefinition('app-server')
 export class IAppServer {
   public getIsRunning(): Promise<boolean> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   public start(hostname: string = 'localhost', port: number = 5656): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this, hostname, port);
   }
   public stop(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
 }

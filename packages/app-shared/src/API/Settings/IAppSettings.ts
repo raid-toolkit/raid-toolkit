@@ -1,18 +1,18 @@
-import { ApiDefinition } from '@remote-ioc/runtime';
+import { ApiDefinition, methodStub } from '@remote-ioc/runtime';
 import type { UserSettings } from '../../Types';
 
 @ApiDefinition('app-settings')
 export class IAppSettings {
   getUserSettings(): Promise<UserSettings> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
-  setUserSettings(_settings: UserSettings): Promise<void> {
-    throw new Error('not implemented');
+  setUserSettings(settings: UserSettings): Promise<void> {
+    methodStub(this, settings);
   }
-  on(_event: 'settings-changed', _callback: (state: UserSettings) => void): this {
-    throw new Error('not implemented');
+  on(event: 'settings-changed', callback: (state: UserSettings) => void): this {
+    methodStub(this, event, callback);
   }
-  off(_event: 'settings-changed', _callback: (state: UserSettings) => void): this {
-    throw new Error('not implemented');
+  off(event: 'settings-changed', callback: (state: UserSettings) => void): this {
+    methodStub(this, event, callback);
   }
 }

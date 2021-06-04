@@ -1,60 +1,60 @@
-import { ApiDefinition } from '@remote-ioc/runtime';
-import { UpdateState, UserSettings } from '../../Types';
+import { ApiDefinition, methodStub } from '@remote-ioc/runtime';
+import type { UpdateState, UserSettings } from '../../Types';
 
 @ApiDefinition('app-host')
 export class IAppHost {
-  init(_force?: boolean): Promise<void> {
-    throw new Error('not implemented');
+  init(force?: boolean): Promise<void> {
+    methodStub(this, force);
   }
   checkForUpdates(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   getUserSettings(): Promise<UserSettings> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
-  setUserSettings(_settings: UserSettings): Promise<void> {
-    throw new Error('not implemented');
+  setUserSettings(settings: UserSettings): Promise<void> {
+    methodStub(this, settings);
   }
   getResourceHost(): Promise<string> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   getUpdateState(): Promise<UpdateState> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   onRender(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   close(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
-  closeWindow(_name: 'splash' | 'main'): Promise<void> {
-    throw new Error('not implemented');
+  closeWindow(name: 'splash' | 'main'): Promise<void> {
+    methodStub(this, name);
   }
-  resizeWindow(_name: 'splash' | 'main', _size: { width?: number; height?: number }): Promise<void> {
-    throw new Error('not implemented');
+  resizeWindow(name: 'splash' | 'main', size: { width?: number; height?: number }): Promise<void> {
+    methodStub(this, name, size);
   }
   installUpdate(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   donate(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   openDiscord(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   getServerState(): Promise<boolean> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
   openServer(): Promise<void> {
-    throw new Error('not implemented');
+    methodStub(this);
   }
-  toggleServer(_enabled: boolean): Promise<void> {
-    throw new Error('not implemented');
+  toggleServer(enabled: boolean): Promise<void> {
+    methodStub(this, enabled);
   }
-  on(_event: 'updater-state-changed', _callback: (state: UpdateState) => void): this {
-    throw new Error('not implemented');
+  on(event: 'updater-state-changed', callback: (state: UpdateState) => void): this {
+    methodStub(this, event, callback);
   }
-  off(_event: 'updater-state-changed', _callback: (state: UpdateState) => void): this {
-    throw new Error('not implemented');
+  off(event: 'updater-state-changed', callback: (state: UpdateState) => void): this {
+    methodStub(this, event, callback);
   }
 }

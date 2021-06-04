@@ -1,6 +1,6 @@
-import { SkillEffect, SkillUpgrade } from '../MessageTypes';
-import { SkillVisibility } from '../Enums';
-import { LocalizedText } from './LocalizedText';
+import type { SkillEffect, SkillUpgrade } from '../MessageTypes';
+import type { SkillVisibility } from '../Enums';
+import type { LocalizedText } from './LocalizedText';
 
 export interface StaticSkillType {
   typeId: number;

@@ -1,5 +1,5 @@
 import type { Rarity, ShardType } from '../Enums';
-import { StaticHeroType } from '../StaticData';
+import type { StaticHeroType } from '../StaticData';
 
 export interface SummonRateInfo {
   lastHero: StaticHeroType;
