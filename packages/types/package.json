@@ -5,7 +5,6 @@
   "description": "Raid-toolkit core types",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "private": false,
   "keywords": [],
   "author": {
     "name": "Daniel Chattan",
