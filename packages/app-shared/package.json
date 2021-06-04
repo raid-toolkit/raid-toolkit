@@ -1,7 +1,7 @@
 {
   "name": "@raid-toolkit/app-shared",
   "productName": "@raid-toolkit/app-shared",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Raid-toolkit shared app types",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
