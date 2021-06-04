@@ -1,0 +1,48 @@
+{
+  "name": "@local/raid-toolkit-repo",
+  "version": "1.0.0",
+  "repository": "https://github.com/raid-toolkit/raid-toolkit.git",
+  "author": "dnchattan@gmail.com",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "postinstall": "node ./scripts/post-install.js",
+    "publish": "tsc --build && beachball publish",
+    "change": "beachball change",
+    "check": "beachball check",
+    "build": "tsc --build",
+    "ci": "just ci"
+  },
+  "workspaces": {
+    "packages": [
+      "scripts",
+      "packages/*"
+    ]
+  },
+  "dependencies": {
+    "chalk": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
+    "glob": "^7.1.6",
+    "beachball": "^1.49.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "jest": "^26.6.3",
+    "just-scripts": "^1.4.0",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.5",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.2.0",
+    "yarnw": "^1.0.0"
+  }
+}
