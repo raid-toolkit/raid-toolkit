@@ -14,7 +14,7 @@ const path = require('path');
 
 task('ts', tscTask({ build: true }));
 
-task('test', jestTask());
+task('test', jestTask({ passWithNoTests: true }));
 
 task('prettier:check', prettierCheckTask({ files: ['packages/*/src/**/*.ts'] }));
 task('prettier:fix', prettierTask({ files: ['packages/*/src/**/*.ts'] }));
