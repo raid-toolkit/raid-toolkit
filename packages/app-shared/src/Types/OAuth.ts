@@ -8,7 +8,6 @@ export enum AuthScopes {
  * @example {
  *  "appId": "raid-team-optimizer",
  *  "name": "Team Optimizer",
- *  "author": "Some dude <somedude@example.com>"
  *  "description": "Makes recommendations on what teams will work best in different content of the game",
  *  "scopes": {
  *    "read:heroes": "Read available heroes to suggest teams from",
