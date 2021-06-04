@@ -27,6 +27,7 @@ export interface OAuthAuthorizationRequest {
 export interface ApplicationGrant {
   appId: string;
   secret: string;
+  author?: string;
   name: string;
   description: string;
   scopes: string[];
