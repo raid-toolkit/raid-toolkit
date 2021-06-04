@@ -46,6 +46,9 @@ export class IAppModel {
     methodStub(this, id);
   }
 
+  getApplicationGrants(): Promise<Record<string, ApplicationGrant>> {
+    methodStub(this);
+  }
   grantAccess(grant: ApplicationGrant): Promise<void> {
     methodStub(this, grant);
   }
