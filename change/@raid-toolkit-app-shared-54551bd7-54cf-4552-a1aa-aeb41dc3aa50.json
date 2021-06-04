@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add getApplicationGrants to IAppModel",
+  "packageName": "@raid-toolkit/app-shared",
+  "email": "dnchattan@gmail.com",
+  "dependentChangeType": "patch"
+}
