@@ -7,5 +7,12 @@
   "exclude": [
     "**/*"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "packages/app-shared/tsconfig.json"
+    },
+    {
+      "path": "packages/types/tsconfig.json"
+    }
+  ]
 }
