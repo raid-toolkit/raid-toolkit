@@ -1,4 +1,4 @@
-import { ApplicationGrant, OAuthAuthorizationRequest } from '@raid-toolkit/app-shared';
+import { ApplicationGrant, ClientApiError, OAuthAuthorizationRequest } from '@raid-toolkit/app-shared';
 import { ClientOptions } from './ClientOptions';
 import { PromiseSink } from './Util/PromiseSink';
 
@@ -37,9 +37,16 @@ export class TokenManager {
         'Content-Type': 'application/json',
       },
     });
-    if (response.status !== 200 && response.status !== 201) {
-      throw new Error('User did not grant permissions');
+
+    // error?
+    if (response.status >= 400) {
+      try {
+        throw new ClientApiError(response.status, await response.json());
+      } catch {
+        throw new Error(`Server returned ${response.status}`);
+      }
     }
+
     const grant = (await response.json()) as ApplicationGrant;
 
     if (storage && crypt) {
@@ -76,8 +83,13 @@ export class TokenManager {
       body: encodeURI(`scope=${grant.scopes.join(' ')}`),
     });
 
-    if (tokenResponse.status !== 200) {
-      throw new Error(await tokenResponse.json());
+    // error?
+    if (tokenResponse.status >= 400) {
+      try {
+        throw new ClientApiError(tokenResponse.status, await tokenResponse.json());
+      } catch {
+        throw new Error(`Server returned ${tokenResponse.status}`);
+      }
     }
 
     const token = (await tokenResponse.json()) as JWT;

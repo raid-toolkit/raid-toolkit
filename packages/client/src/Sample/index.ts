@@ -2,6 +2,7 @@
 import Cryptr from 'cryptr';
 import path from 'path';
 import fs from 'fs';
+import { ApiError, AuthorizationRejectedError, isErrorDetailsForType } from '@raid-toolkit/app-shared';
 import { Client } from '../Client';
 import { StorageFunctions } from '../ClientOptions';
 
@@ -33,6 +34,17 @@ async function runSample() {
     }
   );
   await client.requestAccess();
+  try {
+    await client.authorize();
+  } catch (e) {
+    if (e instanceof ApiError) {
+      const details = e.json();
+      if (isErrorDetailsForType(details, AuthorizationRejectedError)) {
+        await client.requestAccess();
+      }
+    }
+    throw e;
+  }
   const artifactSets = await client.getArtifactSets();
   for (const set of artifactSets) {
     // eslint-disable-next-line no-console
