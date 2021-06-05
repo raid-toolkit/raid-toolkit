@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add sample package",
+  "packageName": "@raid-toolkit/client",
+  "email": "dnchattan@gmail.com",
+  "dependentChangeType": "patch"
+}
