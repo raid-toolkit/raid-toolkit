@@ -16,6 +16,9 @@
     },
     {
       "path": "packages/types/tsconfig.json"
+    },
+    {
+      "path": "samples/basic-client/tsconfig.json"
     }
   ]
 }

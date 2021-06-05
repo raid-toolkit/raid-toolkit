@@ -16,7 +16,8 @@
   "workspaces": {
     "packages": [
       "scripts",
-      "packages/*"
+      "packages/*",
+      "samples/*"
     ]
   },
   "dependencies": {

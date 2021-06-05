@@ -595,6 +595,15 @@
   resolved "https://registry.yarnpkg.com/@pnpm/types/-/types-6.4.0.tgz#312c3bf0b43b003508cb21bd3815406ea0f3b669"
   integrity sha512-nco4+4sZqNHn60Y4VE/fbtlShCBqipyUO+nKRPvDHqLrecMW9pzHWMVRxk4nrMRoeowj3q0rX3GYRBa8lsHTAg==
 
+"@raid-toolkit/app-shared@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@raid-toolkit/app-shared/-/app-shared-0.1.4.tgz#915e46f250ad6508de361a5cc9a641b6c83c7c26"
+  integrity sha512-1dGZ4oB1P3yjejeaT+oyGZD2+6GjdunCvbRVHUsAcTqJ/+9aCsMZMYZ3xax+g/3OTfZ+OPs78WDOJdYR3RunyQ==
+  dependencies:
+    "@raid-toolkit/types" "^0.1.0"
+    "@remote-ioc/runtime" "^2.0.1"
+    tslib "^2.1.0"
+
 "@remote-ioc/runtime@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@remote-ioc/runtime/-/runtime-2.0.1.tgz#d8760d8b5e4fa74c559f8fe7dc76915b7c9d5b08"
