@@ -1,0 +1,26 @@
+{
+  "name": "@raid-toolkit/client",
+  "productName": "Raid Toolkit client library",
+  "version": "0.1.0",
+  "description": "Client library for accessing Raid Toolkit APIs",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "keywords": [],
+  "author": {
+    "name": "Daniel Chattan",
+    "email": "dnchattan@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cryptr": "^4.0.1",
+    "@types/isomorphic-fetch": "^0.0.35",
+    "typescript": "^4.1.3",
+    "cryptr": "^6.0.2"
+  },
+  "dependencies": {
+    "@raid-toolkit/app-shared": "^0.1.3",
+    "@raid-toolkit/types": "^0.1.0",
+    "isomorphic-fetch": "^3.0.0",
+    "tslib": "^2.1.0"
+  }
+}
