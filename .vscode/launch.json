@@ -1,6 +1,19 @@
 {
   "configurations": [
     {
+      "name": "Launch Client Sample",
+      "program": "${workspaceFolder}/packages/client/src/Sample/index.ts",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Debug Jest Tests",
