@@ -12,6 +12,9 @@
       "path": "packages/app-shared/tsconfig.json"
     },
     {
+      "path": "packages/client/tsconfig.json"
+    },
+    {
       "path": "packages/types/tsconfig.json"
     }
   ]
