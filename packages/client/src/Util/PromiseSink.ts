@@ -1,21 +1,15 @@
 export class PromiseSink<T> implements Promise<T> {
   private promise: Promise<void>;
   private resolve?: () => void;
-  private reject?: () => void;
   constructor();
   constructor(value: T);
   constructor(error: Error);
   constructor(private value?: T | Error) {
-    this.promise = new Promise((resolve, reject) => {
-      if (value) {
-        if (value instanceof Error) {
-          reject();
-        } else {
-          resolve();
-        }
+    this.promise = new Promise((resolve) => {
+      if (arguments.length === 1) {
+        resolve();
       } else {
         this.resolve = resolve;
-        this.reject = reject;
       }
     });
   }
@@ -34,32 +28,24 @@ export class PromiseSink<T> implements Promise<T> {
   catch<TResult = never>(
     onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
   ): Promise<T | TResult> {
-    return this.getValue().then(onrejected);
+    return this.getValue().catch(onrejected);
   }
 
   finally(onfinally?: (() => void) | undefined | null): Promise<T> {
     return this.getValue().finally(onfinally);
   }
 
-  async getValue(): Promise<T> {
+  private async getValue(): Promise<T> {
     await this.promise;
-    if (!this.value) {
-      return Promise.reject();
-    }
     if (this.value instanceof Error) {
       return Promise.reject(this.value);
     }
-    return Promise.resolve(this.value);
+    return Promise.resolve(this.value!);
   }
 
   setValue(value: T | Error): void {
     this.value = value;
-    if (value instanceof Error) {
-      this.reject?.();
-    } else {
-      this.resolve?.();
-    }
-    delete this.reject;
+    this.resolve?.();
     delete this.resolve;
   }
 }
