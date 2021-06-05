@@ -2,7 +2,14 @@
 import Cryptr from 'cryptr';
 import path from 'path';
 import fs from 'fs';
-import { ApiError, AuthorizationRejectedError, isErrorDetailsForType } from '@raid-toolkit/app-shared';
+import {
+  ApiError,
+  assertApiError,
+  AuthorizationRejectedError,
+  InvalidApplicationCredentialsError,
+  isErrorType,
+  ScopeNotGrantedError,
+} from '@raid-toolkit/app-shared';
 import { Client } from '../Client';
 import { StorageFunctions } from '../ClientOptions';
 
@@ -24,6 +31,7 @@ async function runSample() {
       name: 'My test app',
       description: 'My test app',
       scopes: {
+        'read:heroes': 'Read hero data',
         'read:artifacts': 'Read artifact data',
       },
       author: 'someuser@example.com',
@@ -38,18 +46,27 @@ async function runSample() {
     await client.authorize();
   } catch (e) {
     if (e instanceof ApiError) {
-      const details = e.json();
-      if (isErrorDetailsForType(details, AuthorizationRejectedError)) {
-        await client.requestAccess();
+      if (
+        isErrorType(e, AuthorizationRejectedError) ||
+        isErrorType(e, InvalidApplicationCredentialsError) ||
+        isErrorType(e, ScopeNotGrantedError)
+      ) {
+        await client.requestAccess(/* force */ true);
+      } else {
+        throw e;
       }
+    } else {
+      throw e;
     }
-    throw e;
   }
-  const artifactSets = await client.getArtifactSets();
-  for (const set of artifactSets) {
-    // eslint-disable-next-line no-console
-    console.log(set);
-  }
+  // eslint-disable-next-line no-console
+  console.log({ artifactSets: await client.getArtifactSets(), heroes: await client.getHeroes(true) });
+  // eslint-disable-next-line no-console
+  console.log('done');
 }
 
-runSample();
+runSample().catch((err) => {
+  assertApiError(err);
+  // eslint-disable-next-line no-console
+  console.error(err.json());
+});

@@ -1,11 +1,13 @@
+import { assertApiError, handleResponse, OAuthAuthorizationRequest, TokenExpiredError } from '@raid-toolkit/app-shared';
 import {
-  ApiError,
-  ClientApiError,
-  isErrorDetailsForType,
-  OAuthAuthorizationRequest,
-  TokenExpiredError,
-} from '@raid-toolkit/app-shared';
-import { StaticArtifactSetKind } from '@raid-toolkit/types';
+  ArtifactInstance,
+  HeroInstance,
+  HeroSnapshot,
+  ShardStatistics,
+  StaticArtifactSetKind,
+  StaticHeroType,
+  StaticSkillType,
+} from '@raid-toolkit/types';
 import fetch from 'isomorphic-fetch';
 import { ClientOptions } from './ClientOptions';
 import { TokenManager } from './TokenManager';
@@ -23,25 +25,66 @@ export class Client {
     this.tokenManager = new TokenManager(request, this.options);
   }
 
-  requestAccess(): Promise<void> {
-    return this.tokenManager.requestAccess();
+  async getArtifactSets(): Promise<StaticArtifactSetKind[]> {
+    return this.fetchResourceWithRetry('artifacts/sets');
+  }
+
+  async getArtifactSet(setKindId: number): Promise<StaticArtifactSetKind> {
+    return this.fetchResourceWithRetry(`artifacts/sets/${setKindId}`);
+  }
+
+  async getArtifacts(): Promise<ArtifactInstance[]> {
+    return this.fetchResourceWithRetry(`artifacts`);
+  }
+
+  async getArtifact(artifactId: number): Promise<ArtifactInstance> {
+    return this.fetchResourceWithRetry(`artifacts/${artifactId}`);
+  }
+
+  async getHeroType(heroTypeId: number): Promise<StaticHeroType> {
+    return this.fetchResourceWithRetry(`heroes/types/${heroTypeId}`);
+  }
+
+  async getHeroes(): Promise<HeroInstance[]>;
+  async getHeroes(snapshot: true): Promise<HeroSnapshot[]>;
+  async getHeroes(snapshot: false): Promise<HeroSnapshot[]>;
+  async getHeroes(snapshot?: boolean): Promise<HeroInstance | HeroInstance[]> {
+    return this.fetchResourceWithRetry(snapshot ? 'snapshot/heroes' : 'heroes');
+  }
+
+  async getHero(heroId: number): Promise<HeroInstance>;
+  async getHero(heroId: number, snapshot: true): Promise<HeroSnapshot>;
+  async getHero(heroId: number, snapshot: false): Promise<HeroSnapshot>;
+  async getHero(heroId: number, snapshot?: boolean): Promise<HeroInstance | HeroSnapshot> {
+    return this.fetchResourceWithRetry(snapshot ? `snapshot/heroes/${heroId}` : `heroes/${heroId}`);
+  }
+
+  getShardStats(): Promise<ShardStatistics[]> {
+    return this.fetchResourceWithRetry('shards/stats');
+  }
+
+  getSkill(skillId: number): Promise<StaticSkillType> {
+    return this.fetchResourceWithRetry(`skills/${skillId}`);
+  }
+
+  // #region auth
+  requestAccess(force: boolean = false): Promise<void> {
+    return this.tokenManager.requestAccess(force);
   }
 
   async authorize(): Promise<void> {
     await this.tokenManager.refreshToken();
   }
+  // #endregion auth
 
-  async getArtifactSets(): Promise<StaticArtifactSetKind[]> {
+  // #region impl
+  private async fetchResourceWithRetry<T>(path: string): Promise<T> {
     try {
-      return await this.fetchResource('artifacts/sets');
+      return await this.fetchResource(path);
     } catch (e) {
-      if (e instanceof ApiError) {
-        if (isErrorDetailsForType(e.json(), TokenExpiredError)) {
-          await this.tokenManager.refreshToken();
-          return this.fetchResource('artifacts/sets');
-        }
-      }
-      throw e;
+      assertApiError(e, TokenExpiredError);
+      await this.tokenManager.refreshToken();
+      return this.fetchResource(path);
     }
   }
 
@@ -54,14 +97,7 @@ export class Client {
       },
     });
 
-    if (response.status >= 400) {
-      try {
-        throw new ClientApiError(response.status, await response.json());
-      } catch {
-        throw new Error(`Server returned ${response.status}`);
-      }
-    }
-
-    return response.json();
+    return handleResponse(response.status, response.json());
   }
+  // #endregion impl
 }

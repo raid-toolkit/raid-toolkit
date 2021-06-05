@@ -1,4 +1,4 @@
-import { ApplicationGrant, ClientApiError, OAuthAuthorizationRequest } from '@raid-toolkit/app-shared';
+import { ApplicationGrant, handleResponse, OAuthAuthorizationRequest } from '@raid-toolkit/app-shared';
 import { ClientOptions } from './ClientOptions';
 import { PromiseSink } from './Util/PromiseSink';
 
@@ -14,9 +14,9 @@ export class TokenManager {
   private grant: PromiseSink<ApplicationGrant> = new PromiseSink();
   constructor(private request: OAuthAuthorizationRequest, private opts: ClientOptions) {}
 
-  async requestAccess(): Promise<void> {
+  async requestAccess(force: boolean): Promise<void> {
     const { storage, crypt, fetch, baseUrl } = this.opts;
-    if (storage && crypt) {
+    if (!force && storage && crypt) {
       try {
         const buf = await storage.fetch('grant');
         if (buf) {
@@ -38,16 +38,7 @@ export class TokenManager {
       },
     });
 
-    // error?
-    if (response.status >= 400) {
-      try {
-        throw new ClientApiError(response.status, await response.json());
-      } catch {
-        throw new Error(`Server returned ${response.status}`);
-      }
-    }
-
-    const grant = (await response.json()) as ApplicationGrant;
+    const grant = await handleResponse<ApplicationGrant>(response.status, response.json());
 
     if (storage && crypt) {
       try {
@@ -83,16 +74,8 @@ export class TokenManager {
       body: encodeURI(`scope=${grant.scopes.join(' ')}`),
     });
 
-    // error?
-    if (tokenResponse.status >= 400) {
-      try {
-        throw new ClientApiError(tokenResponse.status, await tokenResponse.json());
-      } catch {
-        throw new Error(`Server returned ${tokenResponse.status}`);
-      }
-    }
+    const token = await handleResponse<JWT>(tokenResponse.status, tokenResponse.json());
 
-    const token = (await tokenResponse.json()) as JWT;
     this.tokenExpiry = new Date().valueOf() + token.expires_in;
     this.authToken.setValue(token);
 

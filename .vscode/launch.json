@@ -2,10 +2,11 @@
   "configurations": [
     {
       "name": "Launch Client Sample",
-      "program": "${workspaceFolder}/packages/client/src/Sample/index.ts",
       "runtimeArgs": [
+        "--nolazy",
         "-r",
-        "ts-node/register"
+        "ts-node/register",
+        "${workspaceFolder}/packages/client/src/Sample/index.ts"
       ],
       "request": "launch",
       "skipFiles": [
