@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "src",
+    "composite": true,
+    "lib": [
+      "DOM"
+    ]
+  },
+  "references": [
+    {
+      "path": "../../packages/app-shared/tsconfig.json"
+    },
+    {
+      "path": "../../packages/types/tsconfig.json"
+    },
+    {
+      "path": "../../packages/client/tsconfig.json"
+    }
+  ]
+}

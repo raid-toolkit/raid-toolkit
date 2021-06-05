@@ -6,7 +6,7 @@
         "--nolazy",
         "-r",
         "ts-node/register",
-        "${workspaceFolder}/packages/client/src/Sample/index.ts"
+        "${workspaceFolder}/samples/basic-client/src/index.ts"
       ],
       "request": "launch",
       "skipFiles": [

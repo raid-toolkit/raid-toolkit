@@ -20,7 +20,7 @@ task('prettier:check', prettierCheckTask({ files: ['packages/*/src/**/*.ts'] }))
 task('prettier:fix', prettierTask({ files: ['packages/*/src/**/*.ts'] }));
 
 const lintTasks = glob
-  .sync('./packages/**/.eslintrc.js')
+  .sync('./packages/*/.eslintrc.js')
   .map((config) => eslintTask({ files: [path.dirname(config)], configPath: config }));
 task('lint', lintTasks.length ? parallel(...lintTasks) : () => {});
 
