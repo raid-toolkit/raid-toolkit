@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "improve errors",
-  "packageName": "@raid-toolkit/app-shared",
-  "email": "dnchattan@gmail.com",
-  "dependentChangeType": "patch"
-}
