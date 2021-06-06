@@ -46,6 +46,9 @@ export class IAppModel {
     methodStub(this, id);
   }
 
+  getPersonalAccessToken?(): Promise<string> {
+    methodStub(this);
+  }
   getApplicationGrants(): Promise<Record<string, ApplicationGrant>> {
     methodStub(this);
   }

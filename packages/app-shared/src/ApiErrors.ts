@@ -7,8 +7,7 @@ export type ErrorDetails<TProperties extends {} = {}> = {
 
 export abstract class ApiError<TProperties extends {} = {}> extends Error {
   abstract get status(): number;
-
-  public type: string;
+  abstract get type(): string;
 
   public json(): ErrorDetails<TProperties> {
     const details = this.additionalProperties as TProperties;
@@ -27,11 +26,16 @@ export abstract class ApiError<TProperties extends {} = {}> extends Error {
   );
   constructor(message: string, private readonly additionalProperties?: TProperties) {
     super(message);
-    this.type = this.constructor.name;
   }
 }
 
+export interface ApiErrorType<T extends ApiError = ApiError> {
+  new (...args: any[]): ApiError<T>;
+  readonly typeName: string;
+}
+
 export class ClientApiError<TProperties extends {} = {}> extends ApiError<TProperties> {
+  public readonly type: string;
   constructor(readonly status: number, details: ErrorDetails<TProperties>) {
     // @ts-ignore
     super(details.message, details.details);
@@ -40,10 +44,14 @@ export class ClientApiError<TProperties extends {} = {}> extends ApiError<TPrope
 }
 
 export class InvalidApplicationCredentialsError extends ApiError {
+  static readonly typeName = 'InvalidApplicationCredentialsError';
+  public readonly type = 'InvalidApplicationCredentialsError';
   readonly status = 401;
 }
 
 export class AuthorizationRequiredError extends ApiError {
+  static readonly typeName = 'AuthorizationRequiredError';
+  public readonly type = 'AuthorizationRequiredError';
   readonly status = 401;
   constructor() {
     super('Authorization required');
@@ -51,34 +59,43 @@ export class AuthorizationRequiredError extends ApiError {
 }
 
 export class AuthorizationRejectedError extends ApiError {
+  static readonly typeName = 'AuthorizationRejectedError';
+  public readonly type = 'AuthorizationRejectedError';
   readonly status = 403;
 }
 
 export class TokenExpiredError extends ApiError {
+  static readonly typeName = 'TokenExpiredError';
+  public readonly type = 'TokenExpiredError';
   readonly status = 403;
 }
 
 export class ApplicationNotGrantedError extends ApiError<{ appId: string }> {
+  static readonly typeName = 'ApplicationNotGrantedError';
+  public readonly type = 'ApplicationNotGrantedError';
   readonly status = 403;
 }
 
 export class ScopeNotGrantedError extends ApiError<{ scope: string[] }> {
+  static readonly typeName = 'ScopeNotGrantedError';
+  public readonly type = 'ScopeNotGrantedError';
   readonly status = 403;
 }
 
 export class ResourceNotFoundError extends ApiError<{ resourceType?: string; id?: string }> {
+  static readonly typeName = 'ResourceNotFoundError';
+  public readonly type = 'ResourceNotFoundError';
   readonly status = 404;
 }
 
 export class ConflictError extends ApiError {
+  static readonly typeName = 'ConflictError';
+  public readonly type = 'ConflictError';
   readonly status = 409;
 }
 
-export function isErrorType<T extends { new (...args: any[]): ApiError }>(
-  error: ApiError,
-  errorType: T
-): error is InstanceType<T> {
-  return error.type === errorType.name;
+export function isErrorType<T extends ApiErrorType>(error: ApiError, errorType: T): error is InstanceType<T> {
+  return error.type === errorType.typeName;
 }
 
 export function isErrorDetails(data: unknown): data is ErrorDetails {
@@ -105,10 +122,7 @@ export async function handleResponse<T>(status: number, data: Promise<any>): Pro
   return details as T;
 }
 
-export function assertApiError<T extends { new (...args: any[]): ApiError }>(
-  e: unknown,
-  errorType?: T
-): asserts e is ApiError {
+export function assertApiError<T extends ApiErrorType>(e: unknown, errorType?: T): asserts e is ApiError {
   if (!(e instanceof ApiError)) {
     throw e;
   }
