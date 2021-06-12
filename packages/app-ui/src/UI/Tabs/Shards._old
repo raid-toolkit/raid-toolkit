@@ -1,0 +1,203 @@
+import * as React from 'react';
+import { Button, Callout, Card, Colors, HTMLTable, Icon, Intent, ProgressBar, Spinner } from '@blueprintjs/core';
+import { Tooltip2 } from '@blueprintjs/popover2';
+import { Rarity, SummonChances, SummonRule, ShardType, ShardResults } from '@raid-toolkit/types';
+import { round } from '@raid-toolkit/utils';
+import { HeroIcon } from './HeroIcon';
+import { RarityColors } from '../Constants/ShardColors';
+import { ResourceImage } from '../Components/ResourceImage';
+import { ServiceHost } from '../../ServiceHost';
+
+let currentMercyWarning = localStorage.getItem('hide-mercy-warning') !== 'true';
+
+const ShardProgress: React.FC<{ rule?: SummonRule; count: number }> = ({ rule, count }) => {
+  return React.useMemo(() => {
+    if (!rule) {
+      return null;
+    }
+    const { mercyActivation, mercyIncrement, rate } = rule;
+    if (!mercyActivation || !mercyIncrement) {
+      return null;
+    }
+    const countAfterActivationForGuarantee = (1 - rate) / mercyIncrement;
+    const max = Math.ceil(mercyActivation + countAfterActivationForGuarantee);
+    const percentToActivation = mercyActivation / max;
+    const intent: Intent =
+      count < mercyActivation / 2 ? Intent.DANGER : count <= mercyActivation ? Intent.WARNING : Intent.SUCCESS;
+    return (
+      <div style={{ position: 'relative' }}>
+        <ProgressBar value={count / max} intent={intent} animate={false} stripes={false} />
+        <div
+          style={{
+            height: 0,
+            width: 0,
+            zIndex: 1,
+            position: 'absolute',
+            left: `${round(percentToActivation * 100)}%`,
+            border: '7px solid transparent',
+            borderBottomColor: Colors.GREEN4,
+            marginTop: '-5px',
+          }}>
+          <Tooltip2
+            content={
+              <div>
+                <p>
+                  Mercy rule activates at <strong>{mercyActivation} shards</strong>.
+                </p>
+                <p>
+                  Once activated, your summon chances for this rarity will increase by{' '}
+                  <strong>{round(mercyIncrement * 100, 0)}%</strong> for each additional shard pulled.
+                </p>
+                <p>
+                  Fill the progress bar (<strong>{max - count} more pulls!</strong>) for a guaranteed summon of this
+                  rarity!
+                </p>
+              </div>
+            }
+            placement="bottom"
+            renderTarget={(props) => (
+              <div {...props} style={{ position: 'absolute', left: -10, width: 20, height: 30, top: -20 }} />
+            )}
+          />
+        </div>
+      </div>
+    );
+  }, [rule, count]);
+};
+
+export const Shards: React.FC = () => {
+  const [shardResults, setShardResults] = React.useState<ShardResults | undefined>(undefined);
+  const [showWarning, setShowWarning] = React.useState(currentMercyWarning);
+  const hideWarning = React.useCallback(() => {
+    localStorage.setItem('hide-mercy-warning', 'true');
+    currentMercyWarning = false;
+    setShowWarning(false);
+  }, [setShowWarning]);
+  const dismissWarning = React.useCallback(() => {
+    currentMercyWarning = false;
+    setShowWarning(false);
+  }, [setShowWarning]);
+  const fetchData = React.useCallback(() => ServiceHost.appModel.getMercyRule().then(setShardResults), [
+    setShardResults,
+  ]);
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  const table = React.useMemo(() => {
+    if (!shardResults) {
+      return <Spinner size={100} intent={Intent.PRIMARY} />;
+    }
+
+    let rows: JSX.Element[] = [];
+    for (const [type, entries] of Object.entries(shardResults)) {
+      if (!entries) {
+        continue;
+      }
+      const subRows: JSX.Element[] = Object.entries(entries).map(
+        ([rarity, { openedSinceRarity, lastHeroId, summonChance, baseChance }]) => {
+          const rule = SummonChances[(type as unknown) as ShardType][(rarity as unknown) as Rarity];
+          return (
+            <>
+              <td
+                key={`rarity_${type}_${rarity}`}
+                style={{
+                  verticalAlign: 'middle',
+                  fontWeight: 600,
+                  color: RarityColors[(rarity as unknown) as Rarity],
+                  width: 150,
+                }}>
+                {Rarity[rarity as keyof typeof Rarity]}
+              </td>
+              <td style={{ verticalAlign: 'middle' }}>
+                <ShardProgress count={openedSinceRarity} rule={rule} />
+              </td>
+              <td key={`count_${type}_${rarity}`} style={{ verticalAlign: 'middle', textAlign: 'right', width: 125 }}>
+                {openedSinceRarity}
+              </td>
+              <td key={`chance_${type}_${rarity}`} style={{ verticalAlign: 'middle', textAlign: 'right', width: 125 }}>
+                {round(summonChance * 100)}%
+              </td>
+              <td key={`relative_${type}_${rarity}`} style={{ verticalAlign: 'middle', textAlign: 'left', width: 135 }}>
+                {baseChance !== summonChance ? (
+                  <span style={{ color: baseChance > summonChance ? Colors.ORANGE5 : Colors.GREEN5, fontWeight: 700 }}>
+                    {'  '}
+                    <Icon
+                      icon={baseChance > summonChance ? 'caret-down' : 'caret-up'}
+                      intent={baseChance > summonChance ? Intent.WARNING : Intent.SUCCESS}
+                    />
+                    {round((summonChance - baseChance) * 100)}%
+                  </span>
+                ) : (
+                  ''
+                )}
+              </td>
+              <td key={`lastPull_${type}_${rarity}`} style={{ verticalAlign: 'middle', textAlign: 'left', width: 250 }}>
+                <HeroIcon heroId={lastHeroId} />
+              </td>
+            </>
+          );
+        }
+      );
+      rows.push(
+        <tbody key={`row_${type}`}>
+          <tr key={`type_${type}`}>
+            <td
+              key={`icon_${type}`}
+              style={{ verticalAlign: 'middle', textAlign: 'center', width: 100 }}
+              rowSpan={subRows.length}>
+              <ResourceImage style={{ maxHeight: 96, verticalAlign: 'middle' }} path={`Shards/shard_${type}.png`} />
+            </td>
+            {subRows[0]}
+          </tr>
+          {subRows.slice(1).map((subRow, index) => (
+            <tr key={`row_${type}_${index}`}>{subRow}</tr>
+          ))}
+        </tbody>
+      );
+    }
+
+    return (
+      <HTMLTable interactive className="has-merged-rows" style={{ width: '100%' }}>
+        <thead>
+          <tr>
+            <th>Shard Type</th>
+            <th>Rarity</th>
+            <th>Progress</th>
+            <th style={{ textAlign: 'right' }}>Summoned since rarity</th>
+            <th style={{ textAlign: 'right' }}>Summon Chance</th>
+            <th style={{ textAlign: 'left' }}>
+              <Icon icon="caret-up" intent={Intent.SUCCESS} />/<Icon icon="caret-down" intent={Intent.WARNING} />
+              Relative %
+            </th>
+            <th>Last Pull</th>
+          </tr>
+        </thead>
+        {rows}
+      </HTMLTable>
+    );
+  }, [shardResults]);
+
+  return (
+    <div>
+      <div style={{ maxHeight: showWarning ? 200 : 0, transition: 'max-height .5s ease-out' }}>
+        <Callout intent="warning" title="Mercy rule data">
+          <p>
+            Data shown on this screen is only updated by the game on initial login, and will not reflect any shards
+            pulled since then. The game tracks this information authoritatively on the server and local state seems to
+            be purely informational. Do not assume that these values are exact or 100% correct, as it is subject to when
+            the game updates this cached data internally.
+          </p>
+          <p>
+            <Button text="Dismiss" intent="warning" onClick={dismissWarning} />{' '}
+            <Button text="Don't show again" intent="warning" onClick={hideWarning} />
+          </p>
+        </Callout>
+      </div>
+      <Card style={{ position: 'relative' }}>
+        <Button icon="refresh" style={{ position: 'absolute', right: 20, top: 20 }} onClick={fetchData} />
+        {table}
+      </Card>
+    </div>
+  );
+};
