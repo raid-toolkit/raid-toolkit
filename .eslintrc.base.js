@@ -8,6 +8,8 @@ module.exports = function baseConfig(react = false) {
     plugins: ['@typescript-eslint'],
     extends: [react ? 'airbnb-typescript' : 'airbnb-typescript/base', 'prettier/@typescript-eslint', 'prettier'],
     rules: {
+      'no-unescaped-entities': 'off', // just no.
+      'react/jsx-wrap-multilines': 'off', // conflicts with prettier
       'prefer-destructuring': 'off',
       'no-bitwise': 'off',
       'no-continue': 'off',

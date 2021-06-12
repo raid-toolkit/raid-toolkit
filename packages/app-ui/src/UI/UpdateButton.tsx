@@ -65,7 +65,7 @@ export const UpdateButton: React.FC<UpdateButtonProps> = ({ showProgress }: Upda
       interactionKind="click"
       popoverClassName={Classes.POPOVER2_CONTENT}
       placement="bottom-end"
-      content={(
+      content={
         <div style={{ width: 500, padding: 20, cursor: 'default' }} className="nodragRegion">
           <h2>
             Update available:
@@ -86,7 +86,8 @@ export const UpdateButton: React.FC<UpdateButtonProps> = ({ showProgress }: Upda
             </ButtonGroup>
           </div>
         </div>
-      )}
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       renderTarget={({ isOpen, ref, ...targetProps }) => (
         <Button
           style={{ animation: 'pop 0.3s ease-in 1' }}
@@ -96,6 +97,7 @@ export const UpdateButton: React.FC<UpdateButtonProps> = ({ showProgress }: Upda
           text={showProgress ? 'Update available' : undefined}
           className="nodragRegion"
           elementRef={ref as any}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...targetProps}
         />
       )}

@@ -1,4 +1,4 @@
-const base = require('../../.eslintrc.js');
+const base = require('../../.eslintrc.typescript.js');
 module.exports = {
   ...base,
   parserOptions: {

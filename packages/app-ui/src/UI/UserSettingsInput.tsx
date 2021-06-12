@@ -75,11 +75,8 @@ export const UserSettingsInput: React.FC<UserSettingsInputProps> = ({ onSaveSett
       {autoUpdate && (
         <Callout intent={autoUpdateConsent ? 'success' : 'warning'} style={{ marginBottom: 8 }}>
           <p>
-            In order to check for updates automatically, requests will be made to
-            {' '}
-            <a href="#">http://raid-bot.eastus.azurecontainer.io/hazel</a>
-            {' '}
-            when the application starts in order to check
+            In order to check for updates automatically, requests will be made to{' '}
+            <a href="#">http://raid-bot.eastus.azurecontainer.io/hazel</a> when the application starts in order to check
             for any new available updates, and will install them when they are ready. If you'd rather update manually,
             you can disable this feature and instead re-download the latest release and install it yourself.
           </p>
@@ -95,16 +92,14 @@ export const UserSettingsInput: React.FC<UserSettingsInputProps> = ({ onSaveSett
         <Callout intent={alphaUserConsent ? 'success' : 'warning'} style={{ marginBottom: 8 }}>
           <p>
             Alpha users must connect to the server to verify their access. If you consent to check for access, a request
-            will be sent to
-            {' '}
+            will be sent to{' '}
             <a href="#">
               http://raid-bot.eastus.azurecontainer.io/toolkit/user/
               {'<your user id>'}
               /roles
             </a>
-            . No
-            information will be stored from this request, and it is only used for returning the roles permitted to your
-            account.
+            . No information will be stored from this request, and it is only used for returning the roles permitted to
+            your account.
           </p>
           <Switch
             label="I consent to check for alpha-user access"
@@ -119,8 +114,7 @@ export const UserSettingsInput: React.FC<UserSettingsInputProps> = ({ onSaveSett
         text="Save"
         intent="success"
         onClick={onSave}
-      />
-      {' '}
+      />{' '}
       <Button className={Classes.POPOVER2_DISMISS} text="Cancel" intent="danger" onClick={onCancel} />
     </div>
   );
