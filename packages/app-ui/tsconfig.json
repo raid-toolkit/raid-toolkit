@@ -11,13 +11,13 @@
   },
   "references": [
     {
-      "path": "../utils/tsconfig.json"
-    },
-    {
       "path": "../app-shared/tsconfig.json"
     },
     {
       "path": "../types/tsconfig.json"
+    },
+    {
+      "path": "../utils/tsconfig.json"
     }
   ]
 }
