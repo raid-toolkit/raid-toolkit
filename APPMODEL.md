@@ -1,7 +1,7 @@
 Steps to access account information via the REST API:
 * Enable the server by clicking the cloud button in the top right of the application
   ![image](https://user-images.githubusercontent.com/500984/120867177-657a2200-c55f-11eb-8ad1-8efb4b0f874b.png)
-* Click on the green URL to open the swagger documentation page
+* Click on the green URL to open the swagger documentation page, or browse to http://localhost:5656/docs
 * Scoll down to the `oauth/authorize` endpoint and click `Try it!`
 * Update the sample schema to your application information, for example:
   ```json
