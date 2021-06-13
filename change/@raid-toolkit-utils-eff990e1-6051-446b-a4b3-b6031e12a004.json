@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "initial checkin",
+  "packageName": "@raid-toolkit/utils",
+  "email": "dnchattan@gmail.com",
+  "dependentChangeType": "patch"
+}
