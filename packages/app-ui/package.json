@@ -5,7 +5,7 @@
   "description": "Raid toolkit UI",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "private": false,
+  "private": true,
   "keywords": [],
   "author": {
     "name": "Daniel Chattan",
