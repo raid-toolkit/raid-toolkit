@@ -3,6 +3,8 @@ You can now read data from Raid Toolkit with your own applications or websites. 
 
 To get started check out this code sandbox example:
 https://codesandbox.io/s/raid-apisamplesweb-client-h3onh?file=/src/index.ts
+![image](https://user-images.githubusercontent.com/500984/121804362-f8782380-cc13-11eb-9839-193512c01197.png)
+
 
 # Manual steps to access account information via the REST API:
 * Enable the server by clicking the cloud button in the top right of the application
