@@ -1,4 +1,10 @@
-Steps to access account information via the REST API:
+# Client API (alpha)
+You can now read data from Raid Toolkit with your own applications or websites. Note that this is still experimental, and may change or break inbetween releases!
+
+To get started check out this code sandbox example:
+https://codesandbox.io/s/raid-apisamplesweb-client-h3onh?file=/src/index.ts
+
+# Manual steps to access account information via the REST API:
 * Enable the server by clicking the cloud button in the top right of the application
   ![image](https://user-images.githubusercontent.com/500984/120867177-657a2200-c55f-11eb-8ad1-8efb4b0f874b.png)
 * Click on the green URL to open the swagger documentation page, or browse to http://localhost:5656/docs
