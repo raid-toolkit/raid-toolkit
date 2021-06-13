@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add initial ui",
+  "packageName": "@raid-toolkit/app-ui",
+  "email": "dnchattan@gmail.com",
+  "dependentChangeType": "patch"
+}

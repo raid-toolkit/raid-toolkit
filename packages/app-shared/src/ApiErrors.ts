@@ -1,11 +1,11 @@
 /* eslint-disable max-classes-per-file */
-export type ErrorDetails<TProperties extends {} = {}> = {
+export type ErrorDetails<TProperties = unknown> = {
   message: string;
   type: string;
   details: TProperties;
 };
 
-export abstract class ApiError<TProperties extends {} = {}> extends Error {
+export abstract class ApiError<TProperties = unknown> extends Error {
   abstract get status(): number;
   abstract get type(): string;
 
@@ -29,12 +29,12 @@ export abstract class ApiError<TProperties extends {} = {}> extends Error {
   }
 }
 
-export interface ApiErrorType<T extends ApiError = ApiError> {
-  new (...args: any[]): ApiError<T>;
+export interface ApiErrorType {
+  new (...args: any[]): ApiError<any>;
   readonly typeName: string;
 }
 
-export class ClientApiError<TProperties extends {} = {}> extends ApiError<TProperties> {
+export class ClientApiError<TProperties = unknown> extends ApiError<TProperties> {
   public readonly type: string;
   constructor(readonly status: number, details: ErrorDetails<TProperties>) {
     // @ts-ignore

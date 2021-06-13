@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "src",
+    "composite": true,
+    "jsx": "react",
+    "lib": [
+      "DOM"
+    ]
+  },
+  "references": [
+    {
+      "path": "../app-shared/tsconfig.json"
+    },
+    {
+      "path": "../types/tsconfig.json"
+    },
+    {
+      "path": "../utils/tsconfig.json"
+    }
+  ]
+}

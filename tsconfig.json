@@ -12,10 +12,16 @@
       "path": "packages/app-shared/tsconfig.json"
     },
     {
+      "path": "packages/app-ui/tsconfig.json"
+    },
+    {
       "path": "packages/client/tsconfig.json"
     },
     {
       "path": "packages/types/tsconfig.json"
+    },
+    {
+      "path": "packages/utils/tsconfig.json"
     },
     {
       "path": "samples/basic-client/tsconfig.json"

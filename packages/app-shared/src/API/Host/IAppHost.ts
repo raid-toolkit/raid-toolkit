@@ -27,10 +27,10 @@ export class IAppHost {
   close(): Promise<void> {
     methodStub(this);
   }
-  closeWindow(name: 'splash' | 'main'): Promise<void> {
+  closeWindow(name: 'splash' | 'main' | 'firstrun'): Promise<void> {
     methodStub(this, name);
   }
-  resizeWindow(name: 'splash' | 'main', size: { width?: number; height?: number }): Promise<void> {
+  resizeWindow(name: 'splash' | 'main' | 'firstrun', size: { width?: number; height?: number }): Promise<void> {
     methodStub(this, name, size);
   }
   installUpdate(): Promise<void> {
