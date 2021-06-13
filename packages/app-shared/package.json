@@ -1,7 +1,7 @@
 {
   "name": "@raid-toolkit/app-shared",
   "productName": "@raid-toolkit/app-shared",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Raid-toolkit shared app types",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@remote-ioc/runtime": "^2.0.1",
-    "@raid-toolkit/types": "^0.1.0",
+    "@raid-toolkit/types": "^0.1.1",
     "tslib": "^2.1.0"
   }
 }

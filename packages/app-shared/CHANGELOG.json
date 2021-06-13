@@ -2,6 +2,21 @@
   "name": "@raid-toolkit/app-shared",
   "entries": [
     {
+      "date": "Sun, 13 Jun 2021 09:37:13 GMT",
+      "tag": "@raid-toolkit/app-shared_v0.1.6",
+      "version": "0.1.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "add firstrun window",
+            "author": "dnchattan@gmail.com",
+            "commit": "8075329fa2b483ec8fb336c70f9a983fd0fc0a12",
+            "package": "@raid-toolkit/app-shared"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 06 Jun 2021 08:46:02 GMT",
       "tag": "@raid-toolkit/app-shared_v0.1.5",
       "version": "0.1.5",

@@ -1,7 +1,7 @@
 {
   "name": "@raid-toolkit/client",
   "productName": "Raid Toolkit client library",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Client library for accessing Raid Toolkit APIs",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -17,8 +17,8 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@raid-toolkit/app-shared": "^0.1.5",
-    "@raid-toolkit/types": "^0.1.0",
+    "@raid-toolkit/app-shared": "^0.1.6",
+    "@raid-toolkit/types": "^0.1.1",
     "isomorphic-fetch": "^3.0.0",
     "tslib": "^2.1.0"
   }

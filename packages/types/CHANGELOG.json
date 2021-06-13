@@ -1,0 +1,20 @@
+{
+  "name": "@raid-toolkit/types",
+  "entries": [
+    {
+      "date": "Sun, 13 Jun 2021 09:37:13 GMT",
+      "tag": "@raid-toolkit/types_v0.1.1",
+      "version": "0.1.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "none",
+            "author": "dnchattan@gmail.com",
+            "commit": "8075329fa2b483ec8fb336c70f9a983fd0fc0a12",
+            "package": "@raid-toolkit/types"
+          }
+        ]
+      }
+    }
+  ]
+}
