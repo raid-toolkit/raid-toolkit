@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add new APIs",
+  "packageName": "@raid-toolkit/app-shared",
+  "email": "dnchattan@gmail.com",
+  "dependentChangeType": "patch"
+}
