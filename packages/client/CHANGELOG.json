@@ -2,6 +2,21 @@
   "name": "@raid-toolkit/client",
   "entries": [
     {
+      "date": "Sat, 26 Jun 2021 17:33:45 GMT",
+      "tag": "@raid-toolkit/client_v0.1.5",
+      "version": "0.1.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump @raid-toolkit/app-shared to v0.1.7",
+            "author": "dnchattan@gmail.com",
+            "commit": "d35f250c9acf467edfde6c727ca196aeed4b9802",
+            "package": "@raid-toolkit/client"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 13 Jun 2021 09:37:13 GMT",
       "tag": "@raid-toolkit/client_v0.1.4",
       "version": "0.1.4",

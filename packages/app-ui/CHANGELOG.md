@@ -1,8 +1,16 @@
 # Change Log - @raid-toolkit/app-ui
 
-This log was last generated on Sun, 13 Jun 2021 09:37:13 GMT and should not be manually modified.
+This log was last generated on Sat, 26 Jun 2021 17:33:45 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.9
+
+Sat, 26 Jun 2021 17:33:45 GMT
+
+### Patches
+
+- Bump @raid-toolkit/app-shared to v0.1.7 (dnchattan@gmail.com)
 
 ## 1.0.9
 
