@@ -1,8 +1,16 @@
 # Change Log - @raid-toolkit/app-shared
 
-This log was last generated on Sat, 26 Jun 2021 17:33:45 GMT and should not be manually modified.
+This log was last generated on Thu, 01 Jul 2021 21:38:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.1.8
+
+Thu, 01 Jul 2021 21:38:46 GMT
+
+### Patches
+
+- remove app api definitions (dnchattan@gmail.com)
 
 ## 0.1.7
 

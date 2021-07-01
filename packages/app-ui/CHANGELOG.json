@@ -2,6 +2,21 @@
   "name": "@raid-toolkit/app-ui",
   "entries": [
     {
+      "date": "Thu, 01 Jul 2021 21:38:46 GMT",
+      "tag": "@raid-toolkit/app-ui_v1.0.9",
+      "version": "1.0.9",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump @raid-toolkit/app-shared to v0.1.8",
+            "author": "dnchattan@gmail.com",
+            "commit": "dbcb0245226722ebb2e106a48f484dc0a244e72a",
+            "package": "@raid-toolkit/app-ui"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 26 Jun 2021 17:33:45 GMT",
       "tag": "@raid-toolkit/app-ui_v1.0.9",
       "version": "1.0.9",

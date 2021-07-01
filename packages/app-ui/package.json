@@ -37,7 +37,7 @@
     "@blueprintjs/table": "^3.8.24",
     "@fontsource/roboto": "^4.2.2",
     "@fontsource/roboto-condensed": "^4.2.2",
-    "@raid-toolkit/app-shared": "^0.1.7",
+    "@raid-toolkit/app-shared": "^0.1.8",
     "@raid-toolkit/types": "0.1.1",
     "@raid-toolkit/utils": "^0.1.1",
     "autobind-decorator": "^2.4.0",

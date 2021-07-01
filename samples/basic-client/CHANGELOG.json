@@ -2,6 +2,21 @@
   "name": "@raid-toolkit-sample/basic-client",
   "entries": [
     {
+      "date": "Thu, 01 Jul 2021 21:38:46 GMT",
+      "tag": "@raid-toolkit-sample/basic-client_v0.1.0",
+      "version": "0.1.0",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump @raid-toolkit/client to v0.1.6",
+            "author": "dnchattan@gmail.com",
+            "commit": "dbcb0245226722ebb2e106a48f484dc0a244e72a",
+            "package": "@raid-toolkit-sample/basic-client"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 26 Jun 2021 17:33:45 GMT",
       "tag": "@raid-toolkit-sample/basic-client_v0.1.0",
       "version": "0.1.0",

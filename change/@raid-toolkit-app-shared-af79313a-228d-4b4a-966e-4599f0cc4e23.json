@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "remove app api definitions",
-  "packageName": "@raid-toolkit/app-shared",
-  "email": "dnchattan@gmail.com",
-  "dependentChangeType": "patch"
-}
