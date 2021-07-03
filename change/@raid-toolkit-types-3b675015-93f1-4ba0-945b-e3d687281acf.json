@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "add accountinfo",
-  "packageName": "@raid-toolkit/types",
-  "email": "dnchattan@gmail.com",
-  "dependentChangeType": "patch"
-}
