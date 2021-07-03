@@ -1,3 +1,4 @@
+export * from './AccountInfo';
 export * from './ArtifactInstance';
 export * from './Hero';
 export * from './HeroInstance';
