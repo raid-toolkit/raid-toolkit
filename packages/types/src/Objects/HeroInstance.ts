@@ -10,6 +10,8 @@ export interface HeroInstance {
   type: StaticHeroType;
   level: number;
   rank: number;
+  exp: number;
+  fullExp: number;
   deleted?: boolean;
   locked?: boolean;
   inVault?: boolean;
