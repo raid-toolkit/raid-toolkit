@@ -1,3 +1,7 @@
+// localized strings come from:
+// description: l10n:bmi/description?id=${id}#static
+// description: l10n:bmi/name?id=${id}#static
+
 export enum BlackMarketItemType {
   RefillEnergy = 1,
   RefillArenaTokens = 2,
@@ -8,9 +12,9 @@ export enum BlackMarketItemType {
   ShardSacred = 1003,
   ShardVoid = 1004,
 
-  XpBoost2x_1Day = 3001,
-  XpBoost2x_3Day = 3002,
-  XpBoost4x_1Day = 3003,
+  XpBoost2x_1D = 3001,
+  XpBoost2x_3D = 3002,
+  XpBoost4x_6H = 3003,
   XpBoost4x_3Day = 3004,
 
   SkillUpgradeRare = 5001,
