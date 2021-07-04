@@ -10,9 +10,9 @@ export interface HeroInstance {
   type: StaticHeroType;
   level: number;
   rank: number;
-  deleted: boolean;
-  locked: boolean;
-  inVault: boolean;
+  deleted?: boolean;
+  locked?: boolean;
+  inVault?: boolean;
   marker: HeroMarker;
   masteries: MasteryKindId[];
   equippedArtifactIds: EquippedArtifactsByKind;
