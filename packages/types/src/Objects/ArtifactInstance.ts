@@ -15,6 +15,7 @@ export interface ArtifactInstance {
   faction?: Faction;
   seen: boolean;
   failedUpgrades: number;
+  revision: number;
   primaryBonus: ArtifactStatBonus;
   secondaryBonuses: ArtifactStatBonus[];
 }
