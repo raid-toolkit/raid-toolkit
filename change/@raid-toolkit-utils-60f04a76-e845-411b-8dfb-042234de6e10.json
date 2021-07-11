@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add false check to excludeUndefined",
+  "packageName": "@raid-toolkit/utils",
+  "email": "dnchattan@gmail.com",
+  "dependentChangeType": "patch"
+}
