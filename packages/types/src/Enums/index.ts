@@ -1,4 +1,5 @@
 export * from './ArtifactKind';
+export * from './ArtifactSetKind';
 export * from './Affinity';
 export * from './BlackMarketItemType';
 export * from './EffectKind';
